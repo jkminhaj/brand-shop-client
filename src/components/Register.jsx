@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.config";
@@ -7,7 +7,8 @@ import toast, { Toaster } from "react-hot-toast";
 
 
 const Register = () => {
-    const {loading , createUser,connectGoogle , setLoading} = useContext(AuthContext)
+    const { loading, createUser,user, connectGoogle, setLoading } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleRegister = e => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -15,12 +16,12 @@ const Register = () => {
         const name = e.target.name.value;
         let photoUrl = e.target.photo.value;
 
-        if(!photoUrl){
+        if (!photoUrl) {
             photoUrl = 'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='
         }
 
-         // sweet toast
-         const errorNotify = (e) => toast(e,
+        // sweet toast
+        const errorNotify = (e) => toast(e,
             {
                 icon: '⚠',
                 style: {
@@ -28,11 +29,11 @@ const Register = () => {
                     background: 'white',
                     color: 'red',
                 },
-            } );
-        
-    
+            });
+
+
         // password validation
-        if(password.length<5){
+        if (password.length < 5) {
             errorNotify('Password is less than 6 characters')
             return
         } else if (!/[A-Z]/.test(password)) {
@@ -42,37 +43,45 @@ const Register = () => {
             errorNotify('Password should have at least 1 special character');
             return
         }
-        
 
-        createUser(email , password)
 
-        .then(res=>{
-            updateProfile(auth.currentUser, {
-                displayName: name, photoURL: photoUrl
-              }).then(() => {
-                // Profile updated!
-                // ...
-              }).catch((error) => {
-                // An error occurred
-                // ...
-              });
-              
-            console.log(res.user)})
-        .catch(err=>{
-            setLoading(false)
-            if(err.message==='Firebase: Error (auth/email-already-in-use).'){
-                errorNotify('Email already in use')
-            }else if(err.message==='Firebase: Error (auth/invalid-email).'){
-                errorNotify('Invalid email')
-            }
-            console.log(err)})
+        createUser(email, password)
+
+            .then(res => {
+                updateProfile(auth.currentUser, {
+                    displayName: name, photoURL: photoUrl
+                }).then(() => {
+                    swal({
+                        title: "Good job!",
+                        text: "Successfully signed in",
+                        icon: "success",
+                        button: "Done!",
+                    });
+                    navigate('/');
+                    setTimeout(() => { window.location.reload() }, 2000)
+                }).catch((error) => {
+                    // An error occurred
+                    // ...
+                });
+
+                console.log(res.user)
+            })
+            .catch(err => {
+                setLoading(false)
+                if (err.message === 'Firebase: Error (auth/email-already-in-use).') {
+                    errorNotify('Email already in use')
+                } else if (err.message === 'Firebase: Error (auth/invalid-email).') {
+                    errorNotify('Invalid email')
+                }
+                console.log(err)
+            })
     }
 
     // connect with google 
-    const handleGoogle = () =>{
-        connectGoogle().then(res=>{
+    const handleGoogle = () => {
+        connectGoogle().then(res => {
             console.log(res.user)
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err)
         })
     }
@@ -90,7 +99,7 @@ const Register = () => {
                             <input name="photo" type="text" className="w-full md:w-60  py-1 mb-5 outline-none border-b-2 " placeholder="Photo URL  (optional)" /><br />
                             <input required name="email" type="email" className="w-full md:w-60  py-1 mb-5 outline-none border-b-2 " placeholder="Enter email" /><br />
                             <input required name="password" className=" mb-4 border-b-2 py-1 outline-none w-full" type="password" placeholder="Password" /><br />
-                            
+
                             <button className="w-full bg-black hover:bg-slate-700 font-semibold rounded-full px-4 py-2  pt-3 shadow text-white" >{loading ? <span className="loading loading-dots loading-xs"></span>
 
 

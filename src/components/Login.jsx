@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider";
 import swal from 'sweetalert';
 
 
 const Login = () => {
-    const {logIn , loading ,setLoading} = useContext(AuthContext);
+    const {logIn , loading ,setLoading , connectGoogle} = useContext(AuthContext);
+    const navigate = useNavigate()
     const [error , setError] = useState('');
     const errorNotify = (e) => toast(e,
         {
@@ -32,7 +33,8 @@ const Login = () => {
                 icon: "success",
                 button: "Done!",
               });
-            
+              navigate('/');
+              setTimeout(() => { window.location.reload() }, 2000)
         }).catch(err=>{
             setLoading(false)
                 if(err.message==='Firebase: Error (auth/invalid-email).'){
@@ -44,6 +46,17 @@ const Login = () => {
                 console.error(err.message)
         })
     }
+
+    // connect with google 
+    const handleGoogle = () =>{
+        connectGoogle().then(res=>{
+            console.log(res.user)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+
+
     return (
         <div className="flex flex-col items-center md:gap-32">
             <div className='flex justify-center mt-16 md:mt-28'>
@@ -57,7 +70,7 @@ const Login = () => {
                         <button className="w-full bg-black hover:bg-slate-700 font-semibold rounded-full px-4 py-2 shadow text-white" >{loading ? <span className="loading loading-dots loading-xs"></span>
                             : 'Login'}</button>
                     </form>
-                    <p className="text-sm">Login with <button className="hover:border rounded-full hover:transform hover:bg-slate-100  hover:px-2 py-1 " href="" >Google</button></p>
+                    <p className="text-sm">Login with <button className="hover:border rounded-full hover:transform hover:bg-slate-100  hover:px-2 py-1 " href="" onClick={handleGoogle} >Google</button></p>
                     <Link to='/register'><button className=" mt-4 text-black">Register new accout</button></Link>
                 </div>
 
