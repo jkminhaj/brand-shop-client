@@ -5,8 +5,9 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import toast, { Toaster } from "react-hot-toast";
 
+
 const Register = () => {
-    const {loading , createUser,connectGoogle} = useContext(AuthContext)
+    const {loading , createUser,connectGoogle , setLoading} = useContext(AuthContext)
     const handleRegister = e => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -57,7 +58,14 @@ const Register = () => {
               });
               
             console.log(res.user)})
-        .catch(err=>console.log(err))
+        .catch(err=>{
+            setLoading(false)
+            if(err.message==='Firebase: Error (auth/email-already-in-use).'){
+                errorNotify('Email already in use')
+            }else if(err.message==='Firebase: Error (auth/invalid-email).'){
+                errorNotify('Invalid email')
+            }
+            console.log(err)})
     }
 
     // connect with google 
