@@ -1,9 +1,23 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const Cart = () => {
-    const cartData = useLoaderData()
+    const [cartData , setCartData] = useState(useLoaderData());
+    const handleRemove = id =>{
+        fetch(`http://localhost:5000/cart/${id}`,{
+            method:'DELETE'
+        }).then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.deletedCount===1){
+                alert('deleted')
+                const remaining = cartData.filter(item=> item._id!==id);
+                setCartData(remaining)
+            }
+            
+        })
+    }
     console.log(cartData)
-    const {name , price , brand_name,type,short_description,img} = cartData
     return (
         <div className="border shadow-sm rounded mt-7 p-4 md:p-10 md:mt-12">
             <h1 className="text-3xl mb-5 text-center font-medium">Cart ( {cartData.length} items ) </h1>
@@ -23,7 +37,7 @@ const Cart = () => {
                         <tbody>
                             {/* row 1 */}
                             {
-                                cartData.map(item=> <tr key={item.name}>
+                                cartData.map(item=> <tr key={item._id}>
                                 
                                     <td>
                                         <div className="flex items-center space-x-3">
@@ -43,7 +57,7 @@ const Cart = () => {
                                     </td>
                                     <td>${item.price}</td>
                                     <th>
-                                        <button className="btn btn-ghost btn-xs">Remove</button>
+                                        <button onClick={()=>handleRemove(item._id)}  className="btn btn-ghost btn-xs">Remove</button>
                                     </th>
                                 </tr>)
                             }
