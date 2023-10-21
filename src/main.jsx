@@ -17,6 +17,7 @@ import Brand from './components/home components/Brand';
 import BrandDetails from './components/home components/BrandDetails';
 import ProductCardDetails from './components/home components/ProductCardDetails';
 import UpdateProduct from './components/home components/UpdateProduct';
+import Cart from './components/home components/Cart';
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login></Login>
+      },
+      {
+        path:'/cart',
+        element:<Cart></Cart>,
+        loader:()=>fetch('http://localhost:5000/cart')
       },
       {
         path: '/register',
