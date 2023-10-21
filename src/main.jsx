@@ -11,6 +11,11 @@ import Login from './components/Login';
 import Register from './components/Register';
 import AuthProvider from './AuthProvider';
 import ErrorPage from './components/ErrorPage';
+import AddProduct from './components/AddProduct';
+import PrivateRoute from '../PrivateRoute';
+import Brand from './components/home components/Brand';
+import BrandDetails from './components/home components/BrandDetails';
+import ProductCardDetails from './components/home components/ProductCardDetails';
 
 
 const router = createBrowserRouter([
@@ -30,6 +35,21 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path:'/addproduct',
+        element:<PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+      },
+      {
+        path:'/brand/:brandName',
+        element:<BrandDetails></BrandDetails>,
+        loader:({params})=>fetch(`http://localhost:5000/product/${params.brandName}`)
+        
+      },
+      {
+        path:'/productcarddetails/:id',
+        element:<ProductCardDetails></ProductCardDetails>,
+        loader:({params})=>fetch(`http://localhost:5000/productid/${params.id}`)
       }
     ]
   },
