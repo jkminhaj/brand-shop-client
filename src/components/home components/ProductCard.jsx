@@ -12,8 +12,8 @@ const ProductCard = ({item}) => {
                     <h2 className="card-title">{name}</h2>
                     
                     <div className="card-actions">
-                        <button className="btn btn-primary">Update</button>
                         <Link to={`/productcarddetails/${_id}`}><button className="btn btn-primary">Details</button></Link>
+                        <Link to={`/updateproduct/${_id}`}><button className="btn btn-primary">Update</button></Link>
                     </div>
                 </div>
             </div>
