@@ -2,6 +2,9 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthProvider, { AuthContext } from "../AuthProvider";
 import './NavBar.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faToggleOff , faToggleOn } from '@fortawesome/free-solid-svg-icons';
+
 
 const NavBar = () => {
     const {user , lightTheme , setLightTheme , logOut} = useContext(AuthContext);
@@ -33,10 +36,10 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
+                <div className="navbar-end flex gap-5">
                 <div>
-                    <button onClick={()=>setLightTheme(!lightTheme)}>{lightTheme?'light':'dark'}</button>
+                    <button onClick={()=>setLightTheme(!lightTheme)}>{lightTheme?<FontAwesomeIcon className="text-2xl" icon={faToggleOff} />:<FontAwesomeIcon className="text-2xl" icon={faToggleOn} />}</button>
                 </div>
-                <div className="navbar-end">
                     {user?
                     <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

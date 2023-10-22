@@ -1,4 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const ProductCardDetails = () => {
     const { brand_name, details, img, name, price, rating_value, type, short_description, is_available } = useLoaderData()[0]
@@ -7,6 +9,16 @@ const ProductCardDetails = () => {
         const features = details[keys];
         var [firstFeature, secondFeature, thirdFeature, forthFeature] = features
     }
+    // sweet toast
+    const addToCartNotify = (e) => toast(e,
+        {
+            icon: '',
+            style: {
+                borderRadius: '50px',
+                background: 'white',
+                color: 'blue',
+            },
+        });
     const handleAddCart = () => {
         const cartItem = { name, brand_name, img, price, type, short_description }
         fetch('http://localhost:5000/cart', {
@@ -15,7 +27,12 @@ const ProductCardDetails = () => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(cartItem)
-        })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    addToCartNotify('Item added in the cart')
+                }
+            })
     }
 
     return (
@@ -51,6 +68,7 @@ const ProductCardDetails = () => {
             <div>
                 <img className="md:w-96  rounded mt-9" src={img} alt="" />
             </div>
+            <Toaster></Toaster>
         </div>
     );
 };

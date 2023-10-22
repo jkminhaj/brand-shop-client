@@ -5,10 +5,10 @@ const Brand = ({brand}) => {
     return (
         <Link to={`/brand/${name}`}>
         <div>
-            <div className=" cursor-pointer rounded bg-base-100  image-full">
+            <div className=" cursor-pointer rounded bg-base-100 relative image-full">
                 <figure><img className="border rounded-lg" src={img}/></figure>
-                <div className="">
-                    <h2 className="badge relative bg-white bottom-10 left-5">{name}</h2>
+                <div>
+                    <h2 className="badge absolute  bg-white bottom-5 left-5">{name}</h2>
                 </div>
             </div>
         </div>

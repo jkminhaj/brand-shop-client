@@ -1,10 +1,21 @@
 import { useLoaderData } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const UpdateProduct = () => {
     const oldProduct = useLoaderData()[0]
     const {name,_id, brand_name, img, type, price, short_description , rating_value} = oldProduct
     const [oldname, oldbrand_name, oldimg, oldtype, oldprice, oldshort_description , oldrating_value] =[name, brand_name, img, type, price, short_description , rating_value]
-    console.log(oldProduct)
+    // sweet toast
+    const updatenotify = (e) => toast(e,
+        {
+            icon: '',
+            style: {
+                borderRadius: '50px',
+                background: 'white',
+                color: 'green',
+            },
+        });
     const handleUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -25,7 +36,7 @@ const UpdateProduct = () => {
                 'content-type':'application/json'
             },
             body:JSON.stringify(updatedProduct)
-        }).then(res=>res.json()).then(data=>alert('item updated successfully'))
+        }).then(res=>res.json()).then(data=>updatenotify('Item updated successfully'))
     }
     return (
         <div>
@@ -54,24 +65,33 @@ const UpdateProduct = () => {
                                     
                                 </select><br></br>
 
-                                {/* dropdown */}
-                                <label className="mb-4">Choose product type : </label><br />
-                                <select defaultValue={oldtype} name="type" className="mb-4 w-full" placeholder="choose" id="cars">
-                                    <option >None</option>
-                                    <option value="phone">Smart Phone</option>
-                                    <option value="laptop">Laptop</option>
-                                    <option value="headphone">Head Phone</option>
-                                    
-                                </select><br></br>
+                                <div className="flex gap-5 ">  
+                                    {/* dropdown */}
+                                    {/* <label className="mb-4">Choose product type : </label><br /> */}
+                                    <select name="type" defaultValue={oldtype} className="mb-4 " placeholder="choose" id="cars">
+                                        <option >Product type</option>
+                                        <option value="mobile">Smart Phone</option>
+                                        <option value="laptop">Laptop</option>
+                                        <option value="headPhone">Head Phone</option>
 
-                                {/* rating */}
-                                <div className="rating rating-md my-2 w-full">
-                                    <input type="radio" name="rating" value='1' className="mask mask-star-2" />
-                                    <input type="radio" name="rating" value='2' className="mask mask-star-2" />
-                                    <input type="radio" name="rating" value='3' className="mask mask-star-2" />
-                                    <input type="radio" name="rating" value='4' className="mask mask-star-2" />
-                                    <input type="radio" name="rating" value='5' className="mask mask-star-2" />
-                                </div><br />
+                                    </select>
+
+
+                                    {/* rating */}
+                                    {/* <label className="mb-4">Rate your product : </label><br /> */}
+                                    <select defaultValue={oldrating_value} name="rating" className="mb-4  " placeholder="choose" id="cars">
+                                        <option >Product ratings</option>
+                                        <option value="1">1</option>
+                                        <option value="1.5">1.5</option>
+                                        <option value="2">2</option>
+                                        <option value="2.5">2.5</option>
+                                        <option value="3">3</option>
+                                        <option value="3.5">3.5</option>
+                                        <option value="4">4</option>
+                                        <option value="4.5">4.5</option>
+                                        <option value="5">5</option>
+                                    </select><br /><br />
+                                </div>
 
                                 <textarea defaultValue={oldshort_description} className="w-full border pl-1 outline-none rounded mb-4" name="description" placeholder="Short description"></textarea>
                                 <button className="w-full bg-black hover:bg-slate-700 font-semibold rounded-full px-4 py-2 shadow text-white" >Update</button>
@@ -84,6 +104,7 @@ const UpdateProduct = () => {
                 </div>
 
             </div>
+            <Toaster></Toaster>
         </div>
     );
 };

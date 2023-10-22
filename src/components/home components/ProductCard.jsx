@@ -15,7 +15,7 @@ const ProductCard = ({ item }) => {
                         <h2 className="card-title">{name}</h2>
                         <div className="flex items-center rating rating-xs badge gap-1">
                             <p>{rating_value}</p>
-                            <input type="radio" class="mask mask-star" />
+                            <input type="radio" className="mask mask-star" />
                         </div>
                     </div>
                     <p>{brand_name}</p>

@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { useContext } from "react";
 import { auth } from "../../firebase.config";
 import { AuthContext } from "../AuthProvider";
+import MiniBanner from "./home components/MiniBanner";
 
 const Root = () => {
     const {lightTheme} = useContext(AuthContext)

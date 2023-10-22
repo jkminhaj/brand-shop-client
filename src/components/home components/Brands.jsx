@@ -10,9 +10,9 @@ const Brands = () => {
         .then(data=>setBrands(data))
     },[])
     return (
-        <div>
+        <div >
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3  my-8">
             {
                 brands.map(brand=><Brand key={brand._id} brand={brand}></Brand>)
             }
