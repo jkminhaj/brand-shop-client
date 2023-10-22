@@ -43,15 +43,15 @@ const AddProduct = () => {
                         <div className="bg-white px-9 py-5 border rounded-md  space-y-7">
                             <h1 className="text-center text-2xl font-semibold mb-7">ADD NEW PRODUCT</h1>
                             <form onSubmit={handleAdd} >
-                                <input name="name" type="text" required className="w-full  py-1 mb-5 outline-none border-b-2 " placeholder="Product Name" /><br />
-                                {/* <input name="brandName" type="text" required className="w-full   py-1 mb-5 outline-none border-b-2 " placeholder="Brand Name" /><br /> */}
-                                <input name="img" type="text" required className="w-full   py-1 mb-5 outline-none border-b-2 " placeholder="Product Image" /><br />
-                                <input name="price" type="number" required className="w-full   py-1 mb-5 outline-none border-b-2 " placeholder="Product Price" /><br />
-                                {/* <input name="" type="text" required className="w-full   py-1 mb-5 outline-none border-b-2 " placeholder="" /><br /> */}
+                                <input  name="name" type="text" required className="w-full  py-1 mb-5 outline-none border-b-2 " placeholder="Product Name" /><br />
+                                {/* <input required name="brandName" type="text" required className="w-full   py-1 mb-5 outline-none border-b-2 " placeholder="Brand Name" /><br /> */}
+                                <input  name="img" type="text" required className="w-full   py-1 mb-5 outline-none border-b-2 " placeholder="Product Image" /><br />
+                                <input  name="price" type="number" required className="w-full   py-1 mb-5 outline-none border-b-2 " placeholder="Product Price" /><br />
+                                {/* <input required name="" type="text" required className="w-full   py-1 mb-5 outline-none border-b-2 " placeholder="" /><br /> */}
 
                                 {/* brand */}
                                 <label className="mb-4">Brand Name : </label><br />
-                                <select name="brandName" className="mb-4 w-full outline-none border-b-2 pb-1" placeholder="choose" id="cars">
+                                <select required name="brandName" className="mb-4 w-full outline-none border-b-2 pb-1" placeholder="choose" id="cars">
                                     <option>None</option>
                                     <option value="Apple">Apple</option>
                                     <option value="Samsung">Samsung</option>
@@ -65,7 +65,7 @@ const AddProduct = () => {
                                 <div className="flex gap-5 ">
                                     {/* dropdown */}
                                     {/* <label className="mb-4">Choose product type : </label><br /> */}
-                                    <select name="type" className="mb-4 " placeholder="choose" id="cars">
+                                    <select required name="type" className="mb-4 " placeholder="choose" id="cars">
                                         <option >Product type</option>
                                         <option value="mobile">Smart Phone</option>
                                         <option value="laptop">Laptop</option>
@@ -76,7 +76,7 @@ const AddProduct = () => {
 
                                     {/* rating */}
                                     {/* <label className="mb-4">Rate your product : </label><br /> */}
-                                    <select name="rating" className="mb-4  " placeholder="choose" id="cars">
+                                    <select required name="rating" className="mb-4  " placeholder="choose" id="cars">
                                         <option >Product ratings</option>
                                         <option value="1">1</option>
                                         <option value="1.5">1.5</option>
@@ -90,8 +90,8 @@ const AddProduct = () => {
                                     </select><br /><br />
                                 </div>
 
-                                <textarea className="w-full border pl-1 outline-none rounded mb-4" name="description" placeholder="Short description"></textarea>
-                                <button className="w-full bg-black hover:bg-slate-700 font-semibold rounded-full px-4 py-2 shadow text-white" >Add</button>
+                                <textarea required className="w-full border pl-1 outline-none rounded mb-4" name="description" placeholder="Short description"></textarea>
+                                <button className="w-full bg-blue-600 hover:bg-blue-700 font-semibold rounded-full px-4 py-2 shadow text-white" >Add</button>
                             </form>
 
 

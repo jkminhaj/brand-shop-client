@@ -4,6 +4,7 @@ import AuthProvider, { AuthContext } from "../AuthProvider";
 import './NavBar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faToggleOff , faToggleOn } from '@fortawesome/free-solid-svg-icons';
+import logo from  '../../public/logo.png'
 
 
 const NavBar = () => {
@@ -29,7 +30,9 @@ const NavBar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <div>
+                    <img src={logo} className="md:w-32 w-24" alt="" />
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 gap-8">
