@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+body{
+    font-family: 'Dosis', sans-serif;
+    font-weight: 400;
+    font-size: large
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

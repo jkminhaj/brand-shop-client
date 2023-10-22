@@ -1,4 +1,12 @@
 a.active{
+    /* border: 1px solid gainsboro; */
+    text-decoration-color: blue;
     text-decoration: underline;
-    color: red;
+
+    
+}
+a{
+    font-size:medium;
+    font-weight: 400;
+    padding: 3px 5px;
 }

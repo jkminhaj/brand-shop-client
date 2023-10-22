@@ -45,6 +45,7 @@ const AuthProvider = ({children}) => {
     }
 
 
+    const [lightTheme , setLightTheme] = useState(true);
     // pass data here !
     const globalSharedData = {
         createUser,
@@ -54,6 +55,8 @@ const AuthProvider = ({children}) => {
         logIn,
         loading,
         setLoading,
+        lightTheme,
+        setLightTheme
     }
 
     // main part

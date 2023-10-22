@@ -4,7 +4,7 @@ import AuthProvider, { AuthContext } from "../AuthProvider";
 import './NavBar.css'
 
 const NavBar = () => {
-    const {user , logOut} = useContext(AuthContext);
+    const {user , lightTheme , setLightTheme , logOut} = useContext(AuthContext);
     console.log(user)
     const links = <>
         <NavLink to='/'><li>Home</li></NavLink>
@@ -32,6 +32,9 @@ const NavBar = () => {
                     <ul className="menu menu-horizontal px-1 gap-8">
                         {links}
                     </ul>
+                </div>
+                <div>
+                    <button onClick={()=>setLightTheme(!lightTheme)}>{lightTheme?'light':'dark'}</button>
                 </div>
                 <div className="navbar-end">
                     {user?
