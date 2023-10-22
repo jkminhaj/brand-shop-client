@@ -10,7 +10,7 @@ const Root = () => {
     const {lightTheme} = useContext(AuthContext)
     return (
         <div  data-theme={lightTheme?'light':'dark'}>
-            <div className="md:w-11/12 mx-auto">
+            <div className="w-11/12 mx-auto">
                 <NavBar />
                 <Outlet></Outlet>
             </div>
