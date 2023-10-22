@@ -24,7 +24,7 @@ const AddProduct = () => {
             name, brand_name, img, type, price, short_description, rating_value
         }
         // adding product to database
-        fetch('http://localhost:5000/product', {
+        fetch('https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/product', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

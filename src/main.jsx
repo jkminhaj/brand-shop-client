@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       {
         path:'/cart',
         element:<PrivateRoute><Cart></Cart></PrivateRoute>,
-        loader:()=>fetch('http://localhost:5000/cart')
+        loader:()=>fetch('https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/cart')
       },
       {
         path: '/register',
@@ -50,18 +50,18 @@ const router = createBrowserRouter([
       {
         path:'/brand/:brandName',
         element:<BrandDetails></BrandDetails>,
-        loader:({params})=>fetch(`http://localhost:5000/product/${params.brandName}`)
+        loader:({params})=>fetch(`https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/product/${params.brandName}`)
         
       },
       {
         path:'/productcarddetails/:id',
         element:<PrivateRoute><ProductCardDetails></ProductCardDetails></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/productid/${params.id}`)
+        loader:({params})=>fetch(`https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/productid/${params.id}`)
       },
       {
         path:'/updateproduct/:id',
         element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/productid/${params.id}`)
+        loader:({params})=>fetch(`https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/productid/${params.id}`)
       }
     ]
   },

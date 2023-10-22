@@ -5,7 +5,7 @@ import Slider from "./Slider";
 const Brands = () => {
     const [brands , setBrands] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/brand')
+        fetch('https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/brand')
         .then(res=>res.json())
         .then(data=>setBrands(data))
     },[])

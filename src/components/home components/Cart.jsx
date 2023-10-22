@@ -16,7 +16,7 @@ const Cart = () => {
             },
         });
     const handleRemove = id => {
-        fetch(`http://localhost:5000/cart/${id}`, {
+        fetch(`https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/cart/${id}`, {
             method: 'DELETE'
         }).then(res => res.json())
             .then(data => {

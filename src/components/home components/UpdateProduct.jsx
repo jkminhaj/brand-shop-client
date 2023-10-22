@@ -30,7 +30,7 @@ const UpdateProduct = () => {
             name, brand_name, img, type, price, short_description , rating_value
         }
         // adding updatedProduct to database
-        fetch(`http://localhost:5000/productid/${_id}`,{
+        fetch(`https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/productid/${_id}`,{
             method:"PUT",
             headers:{
                 'content-type':'application/json'

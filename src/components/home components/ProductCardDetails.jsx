@@ -21,7 +21,7 @@ const ProductCardDetails = () => {
         });
     const handleAddCart = () => {
         const cartItem = { name, brand_name, img, price, type, short_description }
-        fetch('http://localhost:5000/cart', {
+        fetch('https://tech-land-server-3jdnwlzr8-minhajul-islams-projects.vercel.app/cart', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
